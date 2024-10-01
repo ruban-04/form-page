@@ -1,18 +1,23 @@
-const form = document.getElementById('form')
-const Username = document.getElementById('Username')
-const Email = document.getElementById('Email')
-const mobileNumber = document.getElementById('Mobile Number')
-const date = document.getElementById('date')
-const gender = document.getElementById('gender')
-const nameError = document.getElementById('nameError')
-const emailError = document.getElementById('emailError')
-const numberError = document.getElementById('numberError')
-const dateError = document.getElementById('dateError')
-const genderError = document.getElementById('genderError')
+//  function mySubmit(event){
+//   event.preventDefault()
 
-// form.addEventListener('Submit',(e)=>{
-//     e.preventDefault();
-//     ValidateInputs();
+
+//   let form =[]
+  const form = document.getElementById('form')
+  const Username = document.getElementById('Username')
+  const Email = document.getElementById('Email')
+  const mobileNumber = document.getElementById('Mobile Number')
+  const date = document.getElementById('date')
+  const gender = document.getElementById('gender')
+  const nameError = document.getElementById('nameError')
+  const emailError = document.getElementById('emailError')
+  const numberError = document.getElementById('numberError')
+  const dateError = document.getElementById('dateError')
+  const genderError = document.getElementById('genderError')
+
+// // form.addEventListener('Submit',(e)=>{
+// //     e.preventDefault();
+// //     ValidateInputs();
 // })
 
 
@@ -103,3 +108,24 @@ console.log(Username.value)
 
 
 })
+
+// function mySubmit(event){
+//   event.preventDefault()
+
+
+//   let form =[]
+  
+//  form.userName = document.getElementById('Username').value
+//  form.Email = document.getElementById('Email').value
+//  form.mobileNumber = document.getElementById('Mobile Number').value
+//  form.date = document.getElementById('date').value
+//  form.gender = document.getElementById('gender').value
+//  console.log(form)
+
+//   const nameError = document.getElementById('nameError')
+//   const emailError = document.getElementById('emailError')
+//   const numberError = document.getElementById('numberError')
+//   const dateError = document.getElementById('dateError')
+//   const genderError = document.getElementById('genderError')
+
+// }
