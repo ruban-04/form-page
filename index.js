@@ -1,131 +1,103 @@
-//  function mySubmit(event){
-//   event.preventDefault()
+const form = document.getElementById('form');
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+    
 
-//   let form =[]
-  const form = document.getElementById('form')
-  const Username = document.getElementById('Username')
-  const Email = document.getElementById('Email')
-  const mobileNumber = document.getElementById('Mobile Number')
-  const date = document.getElementById('date')
-  const gender = document.getElementById('gender')
-  const nameError = document.getElementById('nameError')
-  const emailError = document.getElementById('emailError')
-  const numberError = document.getElementById('numberError')
-  const dateError = document.getElementById('dateError')
-  const genderError = document.getElementById('genderError')
+// window.location.reload(); 
+// form.reset();
+// location.reload();
+// form.submit();
+ 
+  
 
-// // form.addEventListener('Submit',(e)=>{
-// //     e.preventDefault();
-// //     ValidateInputs();
-// })
+  const username = document.getElementById('Username');
+  const email = document.getElementById('Email');
+  const mobileNumber = document.getElementById('mobileNumber');
+  const date = document.getElementById('date');
+  const genderMale = document.getElementById('genderMale');
+  const genderFemale = document.getElementById('genderFemale');
+  const genderOthers = document.getElementById('genderOthers');
 
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const numberError = document.getElementById('numberError');
+  const dateError = document.getElementById('dateError');
+  const genderError = document.getElementById('genderError');
 
-form.addEventListener('submit',(event) => {
-    event.preventDefault()
+  let valid = true;
 
-  if( Username.value !==  ""){
-    nameError.innerHTML = '';
-    // nameError.style.backgroundColor = "red";
+  // Username validation
 
-  };
-console.log(Username.value)
-
-  if( Username.value ===  ""){
-    nameError.innerHTML = 'Username is not required*'; 
+  if (username.value.trim() === "") {
+    nameError.textContent = 'Username is not required*';
     nameError.style.color = "red";
-    nameError.style.fontSize="12px";
-   };
+    nameError.style.fontSize = "12px";
+    valid = false;
+  } else {
+    nameError.textContent = '';
+  }
 
+  // Email validation
 
-
-   if( Email.value !==  ""){
-    emailError.innerHTML = '';
-  
-  };
-
-  console.log(Email.value)
-
-  if( Email.value ===  ""){
-    emailError.innerHTML = 'Email is not required*'; 
+  if (email.value.trim() === "") {
+    emailError.textContent = 'Email is not required*';
     emailError.style.color = "red";
-    emailError.style.fontSize="12px";
-   };
+    emailError.style.fontSize = "12px";
+    valid = false;
+  } else {
+    emailError.textContent = '';
+  }
 
+  // Mobile number validation
 
-
-
-
-
-   if( mobileNumber.value !==  ""){
-   numberError.innerHTML = '';
-   
-
-  };
-
-  console.log(mobileNumber.value)
-
-
-  if( mobileNumber.value ===  ""){
-    numberError.innerHTML = 'Mobile Number is not required*'; 
+  if (mobileNumber.value.trim() === "") {
+    numberError.textContent = 'Mobile Number is not required*';
     numberError.style.color = "red";
-    numberError.style.fontSize="12px";
-   };
+    numberError.style.fontSize = "12px";
+    valid = false;
+  } else {
+    numberError.textContent = '';
+  }
 
+  // Date of birth validation
 
-   
-   if( date.value !==  ""){
-    dateError.innerHTML = '';
-    
- 
-   };
- 
-   console.log(dateError.value)
- 
- 
-   if( dateError.value ===  ""){
-     dateError.innerHTML = 'Date is not required*'; 
-     dateError.style.color = "red";
-     dateError.style.fontSize="12px";
-    };
+  if (date.value.trim() === "") {
+    dateError.textContent = 'Date is not required*';
+    dateError.style.color = "red";
+    dateError.style.fontSize = "12px";
+    valid = false;
+  } else {
+    dateError.textContent = '';
+  }
 
+  // Gender validation
 
-    
-   if( gender.value !==  ""){
-    genderError.innerHTML = '';
-    
- 
-   };
- 
-   console.log(gender.value)
- 
- 
-   if( gender.value ===  ""){
-     genderError.innerHTML = 'Gender is not required*'; 
-     genderError.style.color = "red";
-     genderError.style.fontSize="12px";
-    };
+  let selectedGender = '';
+  if (genderMale.checked) {
+    selectedGender = genderMale.value;
+  } else if (genderFemale.checked) {
+    selectedGender = genderFemale.value;
+  } else if (genderOthers.checked) {
+    selectedGender = genderOthers.value;
+  } else {
+    genderError.textContent = 'Gender is not required*';
+    genderError.style.color = "red";
+    genderError.style.fontSize = "12px";
+    valid = false;
+  }
+  if (selectedGender) {
+    genderError.textContent = ''; 
+  }
 
+  // If form is valid, print the form values in the console
 
-})
-
-// function mySubmit(event){
-//   event.preventDefault()
-
-
-//   let form =[]
-  
-//  form.userName = document.getElementById('Username').value
-//  form.Email = document.getElementById('Email').value
-//  form.mobileNumber = document.getElementById('Mobile Number').value
-//  form.date = document.getElementById('date').value
-//  form.gender = document.getElementById('gender').value
-//  console.log(form)
-
-//   const nameError = document.getElementById('nameError')
-//   const emailError = document.getElementById('emailError')
-//   const numberError = document.getElementById('numberError')
-//   const dateError = document.getElementById('dateError')
-//   const genderError = document.getElementById('genderError')
-
-// }
+  if (valid) {
+    console.log('Username:', username.value);
+    console.log('Email:', email.value);
+    console.log('Mobile Number:', mobileNumber.value);
+    console.log('Date of Birth:', date.value);
+    console.log('Gender:', selectedGender);
+  }
+  document.getElementById('form').reset();
+});
