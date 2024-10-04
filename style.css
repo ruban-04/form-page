@@ -50,7 +50,7 @@ h1{
 
 } 
 
-.pointer-radio{
+.pointerradio{
     font-size: 14px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -63,3 +63,23 @@ h1{
     border-radius: 5px;
     border-color: #787575;
 }
+
+#print-table{
+    display: flex;
+    justify-content: center;
+    color: rgb(25, 20, 12);
+  
+  }
+  table,td,tr,th{
+    border: 2px solid rgb(189, 29, 29);
+    border-collapse: collapse;
+    padding: 1rem ;
+      background-color:whitesmoke;
+  }
+  th{
+    padding: 1rem 3rem;
+
+  }
+  td{
+    text-align: center;
+  }
