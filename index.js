@@ -1,3 +1,5 @@
+let editingRow = null; 
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -18,8 +20,9 @@ form.addEventListener('submit', (event) => {
   let valid = true;
 
   // Username validation
+
   if (username.value.trim() === "") {
-    nameError.textContent = 'Username is required*';
+    nameError.textContent = 'Username is not required*';
     nameError.style.color = "red";
     nameError.style.fontSize = "12px";
     valid = false;
@@ -28,8 +31,9 @@ form.addEventListener('submit', (event) => {
   }
 
   // Email validation
+
   if (email.value.trim() === "") {
-    emailError.textContent = 'Email is required*';
+    emailError.textContent = 'Email is not required*';
     emailError.style.color = "red";
     emailError.style.fontSize = "12px";
     valid = false;
@@ -38,8 +42,9 @@ form.addEventListener('submit', (event) => {
   }
 
   // Mobile number validation
+
   if (mobileNumber.value.trim() === "") {
-    numberError.textContent = 'Mobile Number is required*';
+    numberError.textContent = 'Mobile Number is not required*';
     numberError.style.color = "red";
     numberError.style.fontSize = "12px";
     valid = false;
@@ -48,8 +53,9 @@ form.addEventListener('submit', (event) => {
   }
 
   // Date of birth validation
+
   if (date.value.trim() === "") {
-    dateError.textContent = 'Date is required*';
+    dateError.textContent = 'Date is not required*';
     dateError.style.color = "red";
     dateError.style.fontSize = "12px";
     valid = false;
@@ -58,6 +64,7 @@ form.addEventListener('submit', (event) => {
   }
 
   // Gender validation
+
   let selectedGender = '';
   if (genderMale.checked) {
     selectedGender = genderMale.value;
@@ -66,7 +73,7 @@ form.addEventListener('submit', (event) => {
   } else if (genderOthers.checked) {
     selectedGender = genderOthers.value;
   } else {
-    genderError.textContent = 'Gender is required*';
+    genderError.textContent = 'Gender is not required*';
     genderError.style.color = "red";
     genderError.style.fontSize = "12px";
     valid = false;
@@ -75,33 +82,71 @@ form.addEventListener('submit', (event) => {
     genderError.textContent = '';
   }
 
-  // If form is valid, print the form values in the console and add to table
+ 
   if (valid) {
-    console.log('Username:', username.value);
-    console.log('Email:', email.value);
-    console.log('Mobile Number:', mobileNumber.value);
-    console.log('Date of Birth:', date.value);
-    console.log('Gender:', selectedGender);
+    if (editingRow) {
+      
+      
+      editingRow.cells[0].innerHTML = username.value;
+      editingRow.cells[1].innerHTML = email.value;
+      editingRow.cells[2].innerHTML = mobileNumber.value;
+      editingRow.cells[3].innerHTML = date.value;
+      editingRow.cells[4].innerHTML = selectedGender;
 
-    // Add values to the table
-    let tableBody = document.getElementById('table-body');
-    let row = `
-      <tr>
-        <td>${username.value}</td>
-        <td>${email.value}</td>
-        <td>${mobileNumber.value}</td>
-        <td>${date.value}</td>
-        <td>${selectedGender}</td>
-         <td>
-          <button class="btn bg-success edit-btn">Edit</button>
-          <button class="btn bg-danger delete-btn">Delete</button>
-      </td>
-      </tr>`;
+      editingRow = null; 
+    } else {
+      
+      
+      let tableBody = document.getElementById('table-body');
+      let row = `
+        <tr>
+          <td>${username.value}</td>
+          <td>${email.value}</td>
+          <td>${mobileNumber.value}</td>
+          <td>${date.value}</td>
+          <td>${selectedGender}</td>
+          <td>
+            <button class="btn bg-success edit-btn">Edit</button>
+            <button class="btn bg-danger delete-btn">Delete</button>
+          </td>
+        </tr>`;
 
-    tableBody.innerHTML += row;
+      tableBody.innerHTML += row;
+    }
 
-   
-    form.reset();
+    form.reset(); 
+    
   }
 });
 
+// Edit Button
+
+document.getElementById('table-body').addEventListener('click', function (event) {
+  if (event.target.classList.contains('edit-btn')) {
+    const row = event.target.closest('tr');
+    
+    
+    
+    document.getElementById('Username').value = row.cells[0].innerHTML;
+    document.getElementById('Email').value = row.cells[1].innerHTML;
+    document.getElementById('mobileNumber').value = row.cells[2].innerHTML;
+    document.getElementById('date').value = row.cells[3].innerHTML;
+    if (row.cells[4].innerHTML === 'Male') {
+      document.getElementById('genderMale').checked = true;
+    } else if (row.cells[4].innerHTML === 'Female') {
+      document.getElementById('genderFemale').checked = true;
+    } else {
+      document.getElementById('genderOthers').checked = true;
+    }
+
+    editingRow = row; 
+    
+  }
+
+// Delete Button
+
+  if (event.target.classList.contains('delete-btn')) {
+    const row = event.target.closest('tr');
+    row.remove();
+  }
+});
